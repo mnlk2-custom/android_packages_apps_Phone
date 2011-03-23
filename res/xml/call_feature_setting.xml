@@ -68,6 +68,16 @@
         android:title="@string/other_settings"
         android:persistent="false" />
 
+       <!-- Trackball Answer - Added by Nushio -->
+    <ListPreference android:key="button_trackball_answer_timed"
+        android:title="@string/trackball_answer" 
+        android:summary="@string/trackball_answer_sum" 
+        android:entries="@array/trackballLabels" 
+        android:entryValues="@array/trackballValues"
+        android:dialogTitle="@string/trackball_answer" 
+        android:persistent="false" />
+    <!-- end Trackball Answer -->
+    
     <CheckBoxPreference
         android:key="button_auto_retry_key"
         android:title="@string/auto_retry_mode_title"
@@ -116,4 +126,5 @@
             android:targetPackage="com.android.phone"
             android:targetClass="com.android.phone.CdmaCallOptions"/>
     </PreferenceScreen>
+
 </PreferenceScreen>

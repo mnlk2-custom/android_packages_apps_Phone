@@ -63,6 +63,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import android.preference.PreferenceManager;
+import android.preference.PreferenceCategory;
+
 
 public class CallFeaturesSetting extends PreferenceActivity
         implements DialogInterface.OnClickListener,
@@ -379,6 +382,13 @@ public class CallFeaturesSetting extends PreferenceActivity
     private CallForwardInfo[] mNewFwdSettings;
     String mNewVMNumber;
 
+    private static final String CATEGORY_ADVANCED = "pref_advanced_settings";
+    private static CallFeaturesSetting mInstance = null;
+    
+  //Trackball Answer
+    private static final String BUTTON_TRACKBALL_ANSWER = "button_trackball_answer_timed";
+    private ListPreference mTrackballAnswer;
+    static String mTrackAnswer;    
     private boolean mForeground;
 
     @Override
@@ -1453,8 +1463,17 @@ public class CallFeaturesSetting extends PreferenceActivity
         updateVoiceNumberField();
         mVMProviderSettingsForced = false;
         createSipCallSettings();
-    }
+        
+    init(PreferenceManager.getDefaultSharedPreferences(getApplicationContext()));
+    mTrackballAnswer = (ListPreference) prefSet.findPreference(BUTTON_TRACKBALL_ANSWER);
+    mTrackballAnswer.setValue(mTrackAnswer);
 
+    //No reason to show Trackball Answer if it doesn't have a Trackball.
+    if(getResources().getConfiguration().navigation != 3){
+   ((PreferenceCategory) prefSet.findPreference(CATEGORY_ADVANCED)).removePreference(mTrackballAnswer);
+    }
+    }  
+    
     private void createSipCallSettings() {
         // Add Internet call settings.
         if (SipManager.isVoipSupported(this)) {
@@ -1827,4 +1846,31 @@ public class CallFeaturesSetting extends PreferenceActivity
         final String key = mVoicemailProviders.getValue();
         return (key != null) ? key : DEFAULT_VM_PROVIDER_KEY;
     }
-}
+
+    private void init(SharedPreferences pref) {
+    //Trackball Answer
+    mTrackAnswer = pref.getString(BUTTON_TRACKBALL_ANSWER, "-1");   	
+    }
+    
+    /**
+    * Initializes Advanced Settings Variables
+    */
+    public static CallFeaturesSetting getInstance(SharedPreferences pref) {
+       if (mInstance == null) {
+           mInstance = new CallFeaturesSetting();
+           mInstance.init(pref);
+       }
+    return mInstance;
+    }  
+    
+    @Override
+    protected void onStop() {    
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        Editor outState = pref.edit();    	
+        //Trackball Answer
+        outState.putString(BUTTON_TRACKBALL_ANSWER,mTrackballAnswer.getValue());
+        outState.commit();
+        init(pref);
+        super.onStop();
+    }
+}    

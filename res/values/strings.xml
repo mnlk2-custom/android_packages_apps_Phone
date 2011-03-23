@@ -1432,4 +1432,18 @@
     <string translatable="false" name="advanced_settings_container">advanced settings container</string>
     <string translatable="false" name="auth_username">AuthUserName</string>
     <!-- End of SIP settings related strings -->
+    
+    <!-- TrackBall Answer - Added by Nushio -->
+    <string name="trackball_answer">Trackball Answer</string>  
+    <string name="trackball_answer_sum">Press the Trackball to Answer the incoming phone call.</string>
+    <string-array name="trackballLabels">
+       <item>Disabled</item> 
+       <item>Tap to Answer</item>
+       <item>Double Tap to Answer</item>    
+    </string-array>  
+    <string-array name="trackballValues">  
+       <item>-1</item>
+       <item>350</item>
+       <item>dt</item> 
+    </string-array>    
 </resources>

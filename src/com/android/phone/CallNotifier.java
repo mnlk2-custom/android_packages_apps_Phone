@@ -48,7 +48,7 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.EventLog;
 import android.util.Log;
-
+import android.preference.PreferenceManager;
 
 /**
  * Phone app module that listens for phone state changes and various other
@@ -174,9 +174,12 @@ public class CallNotifier extends Handler
 
     // Cached AudioManager
     private AudioManager mAudioManager;
-
+    
+    private CallFeaturesSetting mSettings;
+    
     public CallNotifier(PhoneApp app, Phone phone, Ringer ringer,
                         BluetoothHandsfree btMgr, CallLogAsync callLog) {
+        mSettings = CallFeaturesSetting.getInstance(PreferenceManager.getDefaultSharedPreferences(app));
         mApplication = app;
         mCM = app.mCM;
         mCallLog = callLog;
