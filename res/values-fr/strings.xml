@@ -693,7 +693,7 @@
     <string name="no_voip" msgid="8901474054537199865">"Appels Internet non pris en charge"</string>
     
     <!-- TrackBall Answer - Added by Nushio -->
-    <string name="trackball_answer">Répondeur Trackball</string>  
+    <string name="trackball_answer">Rép. avec Trackball</string>  
     <string name="trackball_answer_sum">Utiliser le Trackball pour Répondre aux appels entrants.</string>
     <string-array name="trackballLabels">
        <item>Désactivé</item> 
