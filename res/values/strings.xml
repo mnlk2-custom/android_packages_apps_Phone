@@ -1448,5 +1448,10 @@
        <item>-1</item>
        <item>350</item>
        <item>dt</item> 
-    </string-array>    
+    </string-array>
+    
+    <!-- My Phone Number -->
+    <string name="phone_number_label">My phone number</string>
+    <string name="phone_number_summary">Set the phone number for this device</string>
+    
 </resources>
