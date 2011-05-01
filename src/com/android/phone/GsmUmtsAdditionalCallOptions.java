@@ -1,11 +1,11 @@
 package com.android.phone;
 
-import java.util.ArrayList;
-
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
 import android.util.Log;
+
+import java.util.ArrayList;
 
 public class GsmUmtsAdditionalCallOptions extends
         TimeConsumingPreferenceActivity {
@@ -18,7 +18,7 @@ public class GsmUmtsAdditionalCallOptions extends
 
     private CLIRListPreference mCLIRButton;
     private CallWaitingCheckBoxPreference mCWButton;
-    private MSISDNEditPreference mMSISDNButton;;
+    private MSISDNEditPreference mMSISDNButton;
 
     private ArrayList<Preference> mPreferences = new ArrayList<Preference> ();
     private int mInitIndex= 0;
@@ -37,7 +37,7 @@ public class GsmUmtsAdditionalCallOptions extends
         mPreferences.add(mCLIRButton);
         mPreferences.add(mCWButton);
         mPreferences.add(mMSISDNButton);
-
+        
         if (icicle == null) {
             if (DBG) Log.d(LOG_TAG, "start to init ");
             mCLIRButton.init(this, false);
@@ -76,9 +76,10 @@ public class GsmUmtsAdditionalCallOptions extends
             if (pref instanceof CallWaitingCheckBoxPreference) {
                 ((CallWaitingCheckBoxPreference) pref).init(this, false);
             } else if (pref instanceof MSISDNEditPreference) {
-                ((MSISDNEditPreference) pref).init(this, false);                
+                ((MSISDNEditPreference) pref).init(this, false);
             }
         }
         super.onFinished(preference, reading);
     }
+
 }
